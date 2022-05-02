@@ -1,0 +1,223 @@
+@import url('reset.css');
+@import url('animations.css');
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;600&display=swap');
+
+/* ---------- CSS variables ---------- */
+:root {
+  --body-color: #fefefe;
+  --main-color: #fff;
+  --text-color: #555;
+  --text-input-color: #777;
+  --text-disabled-color: #aaa;
+  --border-color: #eee;
+  --accent-color: #f2f2f2;
+  --unique-color: #333;
+  --editing-color: #fffeca;
+  --icon-opacity: 0.2;
+  --icon-opacity-hover: 0.5;
+}
+
+body {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  font-family: 'Nunito Sans', sans-serif;
+  background-color: var(--body-color);
+}
+
+main {
+  width: calc(100% - 2em);
+  max-width: 30em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--main-color);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+main > *,
+.list-container > * {
+  border-bottom: 1px solid var(--border-color);
+}
+
+.list-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  width: 3em;
+  min-width: 3em;
+}
+
+.list-button img {
+  width: 60%;
+  opacity: var(--icon-opacity);
+  transition-property: opacity;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in;
+}
+
+.list-button:hover {
+  cursor: pointer;
+}
+
+.list-button:hover img {
+  opacity: var(--icon-opacity-hover);
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.header h1 {
+  font-size: 1.1em;
+  padding: 0.8em;
+  flex-grow: 1;
+  color: var(--text-color);
+}
+
+.footer button {
+  background-color: transparent;
+  border: none;
+  color: var(--unique-color);
+}
+
+.header button:hover {
+  cursor: pointer;
+}
+
+.form {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.form input {
+  font-size: 0.9em;
+  color: var(--text-color);
+  padding: 0.8em;
+  font-style: italic;
+  border: none;
+  flex-grow: 1;
+}
+
+.form input:active,
+.form input:focus {
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+.form .list-button img {
+  width: 30%;
+  opacity: 1;
+}
+
+.list-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.list-container li {
+  display: flex;
+  align-items: center;
+  z-index: 1;
+  background-color: var(--main-color);
+  transition-property: background-color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in;
+  overflow: hidden;
+}
+
+.list-container .checkbox {
+  margin-left: 0.8em;
+}
+
+.list-container li .description-input {
+  border: none;
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 1em;
+  background-color: transparent;
+  color: var(--text-color);
+  resize: none;
+}
+
+.list-container li .description,
+.list-container li .description-input {
+  color: var(--text-color);
+  font-size: 1em;
+  padding: 0.8em;
+  flex-grow: 1;
+  display: flex;
+}
+
+/* ----------styles when NOT editing---------- */
+.list-container :not(.editing) .description-input {
+  display: none;
+}
+
+.list-container :not(.editing) .trash {
+  display: none;
+}
+
+.list-container li .description-input:focus,
+.list-container li .description-input:active {
+  border: none;
+  box-shadow: none;
+  outline: none;
+}
+
+.list-container .checkbox:checked + span {
+  text-decoration: line-through;
+  font-style: italic;
+  color: var(--text-disabled-color);
+}
+
+/* ----------styles when editing---------- */
+.list-container .editing {
+  background-color: var(--editing-color);
+}
+
+.list-container .editing .description {
+  display: none;
+}
+
+.list-container .editing .move {
+  display: none;
+}
+
+.footer {
+  width: 100%;
+  padding: 1em;
+  display: flex;
+  justify-content: center;
+  background-color: var(--accent-color);
+}
+
+.footer button:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.insert {
+  animation-name: insert;
+  animation-duration: 0.3s;
+}
+
+.insert-button {
+  animation-name: insert-reversed;
+  animation-duration: 0.3s;
+}
+
+.delete {
+  animation-name: delete;
+  animation-duration: 0.3s;
+}
